@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
+<html lang="sv-se">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+    <header>
+        @if (SignInManager.IsSignedIn(User))
+        {
+        <div id="user-menu-wrapper">
+            <nav id="user-menu">
+                <form class="log-out" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit">Log out</button>
+                </form>
+            </nav>
+        </div>
+        }
+        <div class="menu-btn-wrap">
+            <label for="menu-toggle" aria-hidden="true">Menu</label>
+            <div id="menu-btn" class="close rotate">
+                <span></span>
+                <span></span>
+                <span></span>
+                <div></div>
+                <input type="checkbox" id="menu-toggle" aria-label="dölj meny">
+            </div>
+        </div>
+        <nav id="main-menu">
+            <ul>
+                <li><a asp-controller="Posts" asp-action="Index">Company®</a></li>
+                <li><a asp-controller="Posts" asp-action="News">News</a></li>
+                <li><a asp-controller="Posts" asp-action="Blog">Blog</a></li>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    @*<li><a asp-controller="Posts" asp-action="Create">Create</a></li>*@
+                    <li><a asp-controller="Posts" asp-action="Admin">Administrate</a></li>
+                }
+                <partial name="_LoginPartial" />
+            </ul>
+            
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+    @*<script src="~/js/main.js"></script>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+@*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - projektuppgift</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">projektuppgift</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li><a asp-controller="Posts" asp-action="Index">Index</a></li>
+
+                        <li><a asp-controller="Posts" asp-action="Blog">Blog</a></li>
+                        <li><a asp-controller="Posts" asp-action="News">News</a></li>
+                        <li><a asp-controller="Posts" asp-action="Create">Create</a></li>
+                        <li><a asp-controller="Posts" asp-action="Admin">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - projektuppgift - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>*@
+
+

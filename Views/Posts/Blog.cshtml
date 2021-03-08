@@ -1,0 +1,23 @@
+﻿@model IEnumerable<projektuppgift.Models.Post>
+
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<h1>Blog</h1>
+
+@foreach (var item in Model)
+{ 
+    <article>
+        <h3>@Html.DisplayFor(modelItem => item.PostTitle)</h3>
+        
+
+        <p>@Html.DisplayFor(modelItem => item.Content)</p>
+
+        <div class="post-info">
+            <span class="author">@Html.DisplayFor(modelItem => item.Author)</span>
+            <span class="timestamp">@Html.DisplayFor(modelItem => item.Timestamp)</span>
+        </div>
+    </article>
+}
+
