@@ -2,7 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 <!DOCTYPE html>
-<html lang="sv-se">
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
     <title>@ViewBag.Title</title>
@@ -27,7 +27,6 @@
                 <li><a asp-controller="Posts" asp-action="Blog">Blog</a></li>
                 <partial name="_LoginPartial" />
             </ul>
-            
         </nav>
     </header>
 
@@ -52,9 +51,7 @@
         </div>
         
     </footer>
-    @*<script src="~/js/main.js"></script>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/main.js" asp-append-version="true"></script>
     @RenderSection("scripts", required: false)
 </body>

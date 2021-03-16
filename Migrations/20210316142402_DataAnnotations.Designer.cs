@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projektuppgift.Data;
 
 namespace projektuppgift.Migrations
 {
     [DbContext(typeof(PostContext))]
-    partial class PostContextModelSnapshot : ModelSnapshot
+    [Migration("20210316142402_DataAnnotations")]
+    partial class DataAnnotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

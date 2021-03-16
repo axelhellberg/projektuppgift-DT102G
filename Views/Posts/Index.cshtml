@@ -25,10 +25,10 @@
         <p>@Html.DisplayFor(modelItem => item.Content)</p>
 
         <div class="post-info">
-            <span>@Html.DisplayFor(modelItem => item.Category.CategoryName) post by</span>
+            <span><a asp-controller="Posts" asp-action="@item.Category.CategoryName">@Html.DisplayFor(modelItem => item.Category.CategoryName)</a> post by</span>
             <span class="author">@Html.DisplayFor(modelItem => item.Author)</span>
             <span class="timestamp">@Html.DisplayFor(modelItem => item.Timestamp)</span>
-
+            <span></span>
         </div>
     </article>
 }
