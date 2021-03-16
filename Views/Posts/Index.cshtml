@@ -4,6 +4,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="welcome">
+    <h1>Home of Company®</h1>
 
-<p>Welcome to website!</p>
+    <p>
+        Welcome to the internet home of Company®, the creators of the iconic Product™ (and many others).
+        Here you can read our blog and get updated with the latest news about us and our products.
+    </p>
+</div>
+
+
+<h2>Latest posts</h2>
+
+@foreach (var item in Model)
+{
+    <article>
+        <h3>@Html.DisplayFor(modelItem => item.PostTitle)</h3>
+
+
+        <p>@Html.DisplayFor(modelItem => item.Content)</p>
+
+        <div class="post-info">
+            <span>@Html.DisplayFor(modelItem => item.Category.CategoryName) post by</span>
+            <span class="author">@Html.DisplayFor(modelItem => item.Author)</span>
+            <span class="timestamp">@Html.DisplayFor(modelItem => item.Timestamp)</span>
+
+        </div>
+    </article>
+}

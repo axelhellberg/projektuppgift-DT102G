@@ -23,7 +23,10 @@ namespace projektuppgift.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            var postContext = _context.Posts.Include(p => p.Category);
+            var postContext = _context.Posts
+                .Include(p => p.Category)
+                .OrderByDescending(p => p.PostId)
+                .Take(3);
             return View(await postContext.ToListAsync());
         }
 
@@ -38,14 +41,14 @@ namespace projektuppgift.Controllers
         // Posts/Blog
         public async Task<IActionResult> Blog()
         {
-            var postContext = _context.Posts.Where(p => p.CategoryId == 1).Include(p => p.Category);
+            var postContext = _context.Posts.Where(p => p.CategoryId == 1);
             return View(await postContext.ToListAsync());
         }
 
         // Posts/News
         public async Task<IActionResult> News()
         {
-            var postContext = _context.Posts.Where(p => p.CategoryId == 2).Include(p => p.Category);
+            var postContext = _context.Posts.Where(p => p.CategoryId == 2); // .Include(p => p.Category)
             return View(await postContext.ToListAsync());
         }
 
@@ -68,8 +71,8 @@ namespace projektuppgift.Controllers
             return View(post);
         }
 
-        [Authorize]
         // GET: Posts/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
@@ -77,8 +80,7 @@ namespace projektuppgift.Controllers
         }
 
         // POST: Posts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PostId,PostTitle,Author,Content,Timestamp,CategoryId")] Post post)
@@ -94,6 +96,7 @@ namespace projektuppgift.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -113,6 +116,7 @@ namespace projektuppgift.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PostId,PostTitle,Author,Content,Timestamp,CategoryId")] Post post)
@@ -147,6 +151,7 @@ namespace projektuppgift.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -166,6 +171,7 @@ namespace projektuppgift.Controllers
         }
 
         // POST: Posts/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
