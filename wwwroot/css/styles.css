@@ -23,17 +23,21 @@ p {
 hr {
   margin: 1rem 0; }
 
+input[type="submit"], button.main-button {
+  margin: 1rem 0; }
+
 input[type="submit"], .main-button {
   -webkit-appearance: none;
   -moz-appearance: none;
+  display: inline-block;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 1rem 0;
   padding: .67rem 1rem;
   background-color: #0076CD;
   color: #ffffff;
-  font-size: 1rem; }
+  font-size: 1rem;
+  text-decoration: none; }
   input[type="submit"]:hover, .main-button:hover {
     background-color: #00599a; }
   input[type="submit"].delete, .main-button.delete {
@@ -83,16 +87,8 @@ form select {
 header {
   background-color: #0076CD;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  /*#user-menu-wrapper {
-        background-color: $darkest;
-
-        #user-menu {
-            max-width: 1200px;
-            margin: 0 auto;
-
-            
-        }
-    }*/ }
+  position: relative;
+  z-index: 1; }
   header #main-menu {
     max-width: 1200px;
     margin: 0 auto; }
@@ -119,7 +115,8 @@ header {
   color: #fff;
   background: none;
   cursor: pointer;
-  padding: 1rem; }
+  padding: 1rem;
+  white-space: nowrap; }
   .log-out button:before {
     background: url(../img/leave.svg);
     background-size: cover;
@@ -250,16 +247,18 @@ header {
   margin: 1rem; }
 
 .table {
-  margin: 1rem 0;
+  margin: 2rem 0;
   width: 100%;
   border-collapse: collapse; }
   .table th {
     text-align: left;
     background-color: #0076CD;
     color: #fff;
-    padding: .8rem .2rem; }
+    padding: .8rem .4rem; }
   .table td {
-    padding: .6rem .2rem; }
+    padding: .6rem .4rem; }
+    .table td:last-child {
+      text-align: right; }
   .table tr:nth-child(even) {
     background-color: #eee; }
 
@@ -292,7 +291,8 @@ footer {
       footer #footer-inner ul li:not(:last-child) {
         margin-bottom: .5rem; }
       footer #footer-inner ul:not(:last-child) {
-        margin-right: 1rem; }
+        margin-right: 1rem;
+        margin-bottom: 1rem; }
 
 @media screen and (max-width: 768px) {
   header {

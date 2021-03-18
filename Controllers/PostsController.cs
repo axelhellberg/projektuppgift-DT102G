@@ -34,21 +34,27 @@ namespace projektuppgift.Controllers
         [Authorize]
         public async Task<IActionResult> Admin()
         {
-            var postContext = _context.Posts.Include(p => p.Category);
+            var postContext = _context.Posts
+                .Include(p => p.Category)
+                .OrderByDescending(p => p.PostId);
             return View(await postContext.ToListAsync());
         }
 
         // Posts/Blog
         public async Task<IActionResult> Blog()
         {
-            var postContext = _context.Posts.Where(p => p.CategoryId == 1);
+            var postContext = _context.Posts
+                .Where(p => p.CategoryId == 1)
+                .OrderByDescending(p => p.PostId);
             return View(await postContext.ToListAsync());
         }
 
         // Posts/News
         public async Task<IActionResult> News()
         {
-            var postContext = _context.Posts.Where(p => p.CategoryId == 2); // .Include(p => p.Category)
+            var postContext = _context.Posts
+                .Where(p => p.CategoryId == 2)
+                .OrderByDescending(p => p.PostId);
             return View(await postContext.ToListAsync());
         }
 
@@ -114,8 +120,6 @@ namespace projektuppgift.Controllers
         }
 
         // POST: Posts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

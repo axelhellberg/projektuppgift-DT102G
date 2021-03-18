@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@*<ul class="navbar-nav">*@
+
 @if (SignInManager.IsSignedIn(User))
 {
     <li><a asp-controller="Posts" asp-action="Admin">Admin</a></li>
@@ -13,7 +13,7 @@
         <a asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li>
-        <form class="log-out" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <form class="log-out" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Posts", new { area = "" })">
             <button type="submit">Log out</button>
         </form>
     </li>
