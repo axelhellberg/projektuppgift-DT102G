@@ -15,7 +15,6 @@ if (inputEl && countEl) {
 // toggle menu
 document.getElementById('menu-toggle').addEventListener('change', function () {
     const navEl = document.getElementById('main-menu');
-
     
     navEl.classList.toggle('hidden');
 
